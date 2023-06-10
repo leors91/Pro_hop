@@ -1,0 +1,52 @@
+---
+title: "Stock_Exercise"
+author: "Leo"
+date: "2023-06-10"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Teste com rmarkdown
+
+Just an exercise to practice rmarkdown 
+
+For that we'll use a data set with the historic price of the stock SWK.
+
+Gere we can see the first 30 register of the stock.
+
+```{r , warning=FALSE}
+library(quantmod)
+library(dplyr)
+stock_symbol <- "SWK"
+start_date <- as.Date("2015-01-01")
+end_date <- Sys.Date()
+getSymbols(stock_symbol,from=start_date, to=end_date)
+df_stock <- data.frame(SWK)
+# summary(SWK)
+head(df_stock, 30)
+df_stock$Date <- index(SWK)
+
+```
+
+## Including Plots
+
+With the data it's possible to make the the historic chart of the price.
+
+```{r pressure, echo=FALSE, warning=FALSE}
+
+# dia <- df_stock[,1]
+dia <- df_stock$Date
+# price <- select(df_stock, SWK.Close)
+price <- df_stock$SWK.Close
+print(colnames(df_stock))
+plot(dia, price,type = "l")
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
